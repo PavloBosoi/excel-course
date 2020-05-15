@@ -1,0 +1,25 @@
+.excel{
+    .header{
+        padding: $padding;
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid $color-gray;
+    }
+    .header__input{
+        input{
+            border: 1px solid $color-gray;
+            border-radius: $border-radius;
+            height: 30px;
+            width: 300px;
+            padding: 5px;
+            font-weight: bold;
+            transition: $transition;
+            &:hover,
+            &:focus{
+                border-color: $color-hover;
+            }
+        }
+    }
+}
