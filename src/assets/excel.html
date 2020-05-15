@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+    <div class="excel">
+        <div class="header">
+            <div class="header__input">
+                <input type="text" placeholder="Name">
+            </div>
+            <div class="header__buttons buttons">
+                <button class="buttons__item">
+                    <span class="material-icons">delete</span>
+                </button>
+                <button class="buttons__item">
+                    <span class="material-icons">clear</span>
+                </button>
+            </div>
+        </div>
+
+        <div class="toolbar">
+            <div class="toolbar__buttons buttons">
+                <button class="buttons__item">
+                    <span class="material-icons">format_align_left</span>
+                </button>
+                <button class="buttons__item">
+                    <span class="material-icons">format_align_center</span>
+                </button>
+                <button class="buttons__item">
+                    <span class="material-icons">format_align_right</span>
+                </button>
+                <button class="buttons__item">
+                    <span class="material-icons">format_bold</span>
+                </button>
+                <button class="buttons__item">
+                    <span class="material-icons">format_italic</span>
+                </button>
+                <button class="buttons__item">
+                    <span class="material-icons">format_underlined</span>
+                </button>
+            </div>
+        </div>
+
+        <div class="formula">
+            <div class="formula__icon">fx</div>
+            <div class="formula__input" contenteditable spellcheck="false"></div>
+        </div>
+
+        <div class="table">
+            <div class="table__row">
+                <div class="table__info"></div>
+                <div class="table__data">
+                    <div class="table__cell title">A</div>
+                    <div class="table__cell title">B</div>
+                    <div class="table__cell title">C</div>
+                </div>
+            </div>
+
+            <div class="table__row">
+                <div class="table__info">1</div>
+                <div class="table__data">
+                    <div class="table__cell selected" contenteditable></div>
+                    <div class="table__cell" contenteditable></div>
+                    <div class="table__cell" contenteditable></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,56 @@
+.dashboard{
+    .header{
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: $db-header-height;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-bottom: 1px solid $color-gray;
+    }
+    .new-docs{
+        padding: $padding;
+        border-bottom: 1px solid $color-gray;
+    }
+    .new-docs__item{
+        margin-top: $db-header-height;
+        width: 20%;
+        height: 200px;
+        border: 1px solid $color-gray;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        span{
+            font-size: 70px;
+            transition: $transition;
+        }
+        &:hover,
+        &:focus{
+            span{
+                color: $color-hover;
+            }
+            cursor: pointer;
+        }
+    }
+    .table{
+        padding: $padding;
+    }
+    .table__item{
+        width: 100%;
+        height: 50px;
+        border: 1px solid $color-gray;
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 5px 15px;
+        border-radius: $border-radius;
+        transition: $transition;
+        &:hover,
+        &:focus{
+            background-color: $color-hover;
+        }
+    }
+}

@@ -1,0 +1,26 @@
+.excel {
+    .formula {
+        display: flex;
+        width: 100%;
+        border-bottom: 1px solid $color-gray;
+    }
+
+    .formula__icon {
+        min-width: $info-cell-width;
+        font-size: 16px;
+        font-style: italic;
+        font-weight: bold;
+        padding: 5px;
+        text-align: center;
+        border-right: 1px solid $color-gray;
+    }
+
+    .formula__input {
+        width: 100%;
+        font-size: 14px;
+        line-height: 24px;
+        font-weight: 100;
+        padding: 2px 10px;
+        outline: none;
+    }
+}
