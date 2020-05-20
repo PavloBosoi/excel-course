@@ -9,73 +9,80 @@ const isDev = !isProd;
 
 const fileName = ext => isDev ? `bundle.${ext}` : `bundle.[hash].${ext}`;
 const jsLoaders = () => {
-  const loaders = [
-    {
-      loader: 'babel-loader',
-      options: {
-        presets: [
-          '@babel/preset-env'
-        ]
-      }
+    const loaders = [
+        {
+            loader: 'babel-loader',
+            options: {
+                presets: [
+                    '@babel/preset-env'
+                ],
+                plugins: [
+                    '@babel/plugin-proposal-class-properties'
+                ]
+            }
+        }
+    ];
+    if (isDev) {
+        loaders.push('eslint-loader');
     }
-  ];
-  if (isDev) {
-    loaders.push('eslint-loader');
-  }
-  return loaders;
+    return loaders;
 };
 
 module.exports = {
-  context: path.resolve(__dirname, 'src'),
-  mode: 'development',
-  entry: [
-    '@babel/polyfill',
-    './index.js'
-  ],
-  output: {
-    filename: fileName('js'),
-    path: path.resolve(__dirname, 'dist')
-  },
-  resolve: {
-    extensions: ['.js'],
-    alias: {
-      '@': path.relative(__dirname, 'src'),
-      '@core': path.relative(__dirname, 'src/core')
-    }
-  },
-  devtool: isDev ? 'source-map' : false,
-  devServer: {
-    port: 3000,
-    hot: isDev
-  },
-  plugins: [
-    new CleanWebpackPlugin(),
-    new HtmlWebpackPlugin({
-      template: 'index.html',
-      minify: {
-        removeComments: isProd,
-        collapseWithSpace: isProd
-      }
-    }),
-    new MiniCssExtractPlugin({
-      filename: fileName('css')
-    })
-  ],
-  module: {
-    rules: [
-      {
-        test: /\.s[ac]ss$/i,
-        use: [
-          MiniCssExtractPlugin.loader,
-          'css-loader',
-          'sass-loader',
-        ],
-      },
-      {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        use: jsLoaders()
-      }
+    context: path.resolve(__dirname, 'src'),
+    mode: 'development',
+    entry: [
+        '@babel/polyfill',
+        './index.js'
     ],
-  },
+    output: {
+        filename: fileName('js'),
+        path: path.resolve(__dirname, 'dist')
+    },
+    resolve: {
+        extensions: ['.js'],
+        alias: {
+            '@app': path.resolve(__dirname, 'src'),
+            '@core': path.resolve(__dirname, 'src/core')
+        }
+    },
+    devtool: isDev ? 'source-map' : false,
+    devServer: {
+        port: 3000,
+        hot: false
+    },
+    plugins: [
+        new CleanWebpackPlugin(),
+        new HtmlWebpackPlugin({
+            template: 'index.html',
+            minify: {
+                removeComments: isProd,
+                collapseWithSpace: isProd
+            }
+        }),
+        new MiniCssExtractPlugin({
+            filename: fileName('css')
+        })
+    ],
+    module: {
+        rules: [
+            {
+                test: /\.s[ac]ss$/i,
+                use: [
+                    MiniCssExtractPlugin.loader,
+                    'css-loader',
+                    'sass-loader',
+                ],
+            },
+            {
+                test: /\.js$/,
+                exclude: /node_modules/,
+                use: jsLoaders()
+            },
+            {
+                test: /\.html$/i,
+                loader: 'html-loader',
+            },
+        ],
+    },
 };
