@@ -1,4 +1,4 @@
-class Dom {
+class DomUtil {
     constructor(selector) {
         this.nativeElement = typeof selector === 'string' ? document.querySelector(selector) : selector;
     }
@@ -16,7 +16,7 @@ class Dom {
     }
 
     appendDom(node) {
-        if (node instanceof Dom) {
+        if (node instanceof DomUtil) {
             node = node.nativeElement;
         }
         this.nativeElement.append(node);
@@ -30,10 +30,34 @@ class Dom {
     off(eventType, callback) {
         this.nativeElement.removeEventListener(eventType, callback);
     }
+
+    closestDom(selector) {
+        return $(this.nativeElement.closest(selector));
+    }
+
+    getCoords() {
+        return this.nativeElement.getBoundingClientRect();
+    }
+
+    setWidth(count) {
+        return this.nativeElement.style.width = count + 'px';
+    }
+
+    setHeight(count) {
+        return this.nativeElement.style.height = count + 'px';
+    }
+
+    findAll(selector) {
+        return this.nativeElement.querySelectorAll(selector);
+    }
+
+    get data() {
+        return this.nativeElement.dataset;
+    }
 }
 
 export function $(selector) {
-    return new Dom(selector);
+    return new DomUtil(selector);
 }
 
 $.create = (tagName, classes = '') => {

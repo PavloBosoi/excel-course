@@ -9,29 +9,89 @@
         display: flex;
     }
 
+    .table__cell_resize{
+        position: absolute;
+        background-color: transparent;
+        z-index: 2;
+    }
+    .table__cell_resize:hover,
+    .table__cell_resize:active{
+        background-color: red;
+    }
+
+    .table__cell_resize:active::before{
+        content: '';
+        position: absolute;
+        background-color: red;
+    }
+
     .table__info {
+        position: relative;
         min-width: $info-cell-width;
-        height: $cell-height;
+        height: 100%;
         padding: 2px;
         border: 1px solid $color-gray;
         border-top: none;
         border-left: none;
-        text-align: center;
+        min-height: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        .table__cell_resize{
+            right: auto;
+            top: auto;
+            left: 0;
+            bottom: -4px;
+            height: 6px;
+            width: 100%;
+        }
+        .table__cell_resize:hover,
+        .table__cell_resize:active{
+            cursor: row-resize;
+        }
+        .table__cell_resize:active::before{
+            top: auto;
+            right: auto;
+            bottom: 2px;
+            left: 0;
+            width: 10000%;
+            height: 1px;
+        }
     }
 
     .table__cell {
+        position: relative;
         width: $data-cell-width;
-        height: $cell-height;
+        height: 100%;
         padding: 2px;
         border: 1px solid $color-gray;
         border-top: none;
         border-left: none;
         outline: none;
-
+        min-width: 40px;
+        min-height: $cell-height;
         &.title {
             text-align: center;
             font-weight: bold;
             background-color: $color-hover;
+            .table__cell_resize{
+                left: auto;
+                bottom: auto;
+                right: -4px;
+                top: 0;
+                width: 6px;
+                height: 100%;
+            }
+            .table__cell_resize:hover,
+            .table__cell_resize:active{
+                cursor: col-resize;
+            }
+            .table__cell_resize:active::before{
+                top: 0;
+                right: 2px;
+                width: 1px;
+                height: 10000%;
+            }
         }
 
         &.selected {
